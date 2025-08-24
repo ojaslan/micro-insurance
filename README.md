@@ -52,4 +52,5 @@ This makes **insurance accessible to people earning as little as $2–$5/day**, 
 - Includes **unit tests** for smart contract logic  
 - Simulation scripts for different insurance scenarios  
 
+![WhatsApp Image 2025-08-24 at 11 25 52_f25dc3e4](https://github.com/user-attachments/assets/0c6618a9-b2dc-40c5-bb5f-e40bec877aa0)
 
