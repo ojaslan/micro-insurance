@@ -54,3 +54,7 @@ This makes **insurance accessible to people earning as little as $2–$5/day**, 
 
 ![WhatsApp Image 2025-08-24 at 11 25 52_f25dc3e4](https://github.com/user-attachments/assets/0c6618a9-b2dc-40c5-bb5f-e40bec877aa0)
 
+
+![WhatsApp Image 2025-08-24 at 11 25 52_5c88f229](https://github.com/user-attachments/assets/6ec32b61-c635-4cc0-a779-af63afa4a058)
+
+
