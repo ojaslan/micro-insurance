@@ -269,7 +269,7 @@ st.markdown(
     """
     <div style="text-align:center; padding: 20px; border-radius: 15px; 
                 background: rgba(0,0,0,0.5); box-shadow: 0px 0px 15px rgba(0,255,224,0.3);">
-        <h1>💎 TechnoSecure Insurance</h1>
+        <h1>💎 microsure</h1>
         <p style="font-size:18px;">A Futuristic Decentralized Insurance Platform on Aptos Blockchain</p>
     </div>
     """,
