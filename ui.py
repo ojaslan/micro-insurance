@@ -198,34 +198,111 @@ def vote_claim(claim_id: int, approve: bool):
 # =====================
 # UI
 # =====================
+# =====================
+# CUSTOM CSS (Techno-Luxury Theme)
+# =====================
+st.markdown(
+    """
+    <style>
+    /* Global background with gradient */
+    .stApp {
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        color: #e0e0e0;
+        font-family: 'Segoe UI', sans-serif;
+    }
 
-st.markdown("<h1>🛡 SecurePool</h1>", unsafe_allow_html=True)
-st.caption("Decentralized MicroInsurance Platform on Aptos")
+    /* Card-like containers */
+    .block-container {
+        padding: 2rem 2rem 2rem 2rem;
+        border-radius: 16px;
+    }
+
+    /* Headers */
+    h1, h2, h3 {
+        color: #00ffe0 !important;
+        text-shadow: 0px 0px 8px rgba(0, 255, 224, 0.8);
+    }
+
+    /* Buttons */
+    button[kind="primary"] {
+        background: linear-gradient(90deg, #00c6ff, #0072ff);
+        color: white;
+        border-radius: 12px;
+        padding: 0.6rem 1.2rem;
+        font-weight: bold;
+    }
+    button[kind="secondary"] {
+        background: linear-gradient(90deg, #ff6a00, #ee0979);
+        color: white;
+        border-radius: 12px;
+        padding: 0.6rem 1.2rem;
+        font-weight: bold;
+    }
+
+    /* Inputs */
+    .stTextInput > div > div > input,
+    .stNumberInput input,
+    .stTextArea textarea {
+        background: #1e2a38;
+        color: #e0e0e0;
+        border-radius: 10px;
+        border: 1px solid #00ffe0;
+    }
+
+    /* Footer */
+    .footer {
+        text-align: center;
+        padding: 12px;
+        font-size: 14px;
+        color: #aaa;
+        margin-top: 2rem;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# =====================
+# UI HEADER
+# =====================
+st.markdown(
+    """
+    <div style="text-align:center; padding: 20px; border-radius: 15px; 
+                background: rgba(0,0,0,0.5); box-shadow: 0px 0px 15px rgba(0,255,224,0.3);">
+        <h1>💎 TechnoSecure Insurance</h1>
+        <p style="font-size:18px;">A Futuristic Decentralized Insurance Platform on Aptos Blockchain</p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 acct = get_account()
 if acct:
-    st.info(f"🔐 Active Account: {acct.address()}")
+    st.success(f"🔑 <b>Active Account:</b> {acct.address()}", icon="🔐")
 
+st.markdown("---")
+
+# =====================
+# DASHBOARD SECTIONS
+# =====================
 col1, col2 = st.columns(2)
 
 with col1:
     st.subheader("👤 Account")
     if not acct:
-        if st.button("Create Demo Account"):
+        st.info("No active account found. Create one below:")
+        if st.button("✨ Create Demo Account", use_container_width=True):
             create_account()
     else:
-        st.success("Account ready. You can create and join pools.")
+        st.success("✅ Account ready. You can now create or join pools.")
 
     st.markdown("---")
     st.subheader("🏗 Create Pool")
-    pool_name = st.text_input("Pool Name", placeholder="e.g., Auto Insurance Pool")
-    c1, c2 = st.columns(2)
-    with c1:
-        premium_amount = st.number_input("Premium (Octas)", min_value=1, value=100)
-    with c2:
-        coverage_amount = st.number_input("Coverage (Octas)", min_value=1, value=1000)
+    pool_name = st.text_input("Pool Name", placeholder="e.g., HealthCare Shield")
+    premium_amount = st.number_input("💰 Premium (Octas)", min_value=1, value=100)
+    coverage_amount = st.number_input("📦 Coverage (Octas)", min_value=1, value=1000)
 
-    if st.button("🚀 Create Pool"):
+    if st.button("🚀 Create Pool", type="primary", use_container_width=True):
         if pool_name.strip():
             publish_pool(pool_name, premium_amount, coverage_amount)
         else:
@@ -233,19 +310,20 @@ with col1:
 
 with col2:
     st.subheader("🤝 Join Pool")
-    join_pool_id = st.number_input("Pool ID to Join", min_value=1, value=1)
-    if st.button("Join Pool"):
+    join_pool_id = st.number_input("🔑 Pool ID to Join", min_value=1, value=1)
+    if st.button("Join Pool", type="secondary", use_container_width=True):
         join_pool(join_pool_id)
 
 st.markdown("---")
 
 c3, c4 = st.columns(2)
+
 with c3:
     st.subheader("📝 Submit Claim")
-    claim_pool_id = st.number_input("Pool ID for Claim", min_value=1, value=1)
-    claim_amount = st.number_input("Claim Amount (Octas)", min_value=1, value=100)
-    claim_desc = st.text_area("Claim Description", placeholder="Describe your claim...")
-    if st.button("Submit Claim"):
+    claim_pool_id = st.number_input("🏛 Pool ID for Claim", min_value=1, value=1)
+    claim_amount = st.number_input("💵 Claim Amount (Octas)", min_value=1, value=100)
+    claim_desc = st.text_area("📜 Claim Description", placeholder="Describe your claim...")
+    if st.button("📩 Submit Claim", type="primary", use_container_width=True):
         if claim_desc.strip():
             submit_claim(claim_pool_id, claim_amount, claim_desc)
         else:
@@ -253,11 +331,17 @@ with c3:
 
 with c4:
     st.subheader("📊 Vote on Claims")
-    vote_claim_id = st.number_input("Claim ID", min_value=1, value=1)
-    vote_choice = st.radio("Your Vote", ["✅ Approve", "❌ Reject"], index=0)
-    if st.button("Cast Vote"):
-        approve_bool = vote_choice.startswith("✅")
+    vote_claim_id = st.number_input("🆔 Claim ID", min_value=1, value=1)
+    vote_choice = st.radio("Cast Your Vote", ["✅ Approve", "❌ Reject"], horizontal=True)
+    approve_bool = vote_choice.startswith("✅")
+    if st.button("🗳 Cast Vote", type="secondary", use_container_width=True):
         vote_claim(vote_claim_id, approve_bool)
 
-st.markdown("---")
-st.caption("Built on Aptos • Powered by Move • Testnet")
+st.markdown(
+    """
+    <div class="footer">
+        🚀 Built on <b>Aptos Blockchain</b> | Designed for <b>Next-Gen Insurance</b>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
